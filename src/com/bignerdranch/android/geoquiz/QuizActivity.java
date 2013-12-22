@@ -13,6 +13,7 @@ public class QuizActivity extends Activity {
 	private Button mTrueButton;
 	private Button mFalseButton;
 	private Button mNextButton;
+	private Button mBackButton;
 	private TextView mQuestionTextView;
 	
 	private TrueFalse[] mQuestionBank = new TrueFalse[] {
@@ -75,6 +76,22 @@ public class QuizActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				mCurrentIndex = (mCurrentIndex+1) % mQuestionBank.length;
+				updateQuestion();
+			}
+		});
+		updateQuestion();
+		
+		mBackButton = (Button)findViewById(R.id.back_button);
+		mBackButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				if (mCurrentIndex !=0){
+					mCurrentIndex = (mCurrentIndex-1) % mQuestionBank.length;
+				}
+				else{
+					mCurrentIndex = mQuestionBank.length -1;
+				}
 				updateQuestion();
 			}
 		});
